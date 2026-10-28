@@ -42,7 +42,7 @@ const updateProducto = async (req, res) => {
 const deleteProducto = async (req, res) => {
   try {
     const { id } = req.params
-    const { error } = supabase.from('productos').delete().eq('id', id)
+    const { error } = await supabase.from('productos').delete().eq('id', id)
     if (error) return res.status(500).json({ error: error.message })
     console.log('Producto eliminado, id:', id)
     res.status(201).json({ mensaje: 'Producto eliminado' })
