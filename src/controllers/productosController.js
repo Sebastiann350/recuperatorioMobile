@@ -44,8 +44,9 @@ const deleteProducto = async (req, res) => {
     const { id } = req.params
     const { error } = await supabase
     .from('productos')
-    .delete()
-    .eq('p.id', id)
+    .delete()//
+    .eq('id', id)
+    select();
     if (error) return res.status(500).json({ error: error.message })
     console.log('Producto eliminado, id:', id)
     res.status(201).json({ mensaje: 'Producto eliminado' })
